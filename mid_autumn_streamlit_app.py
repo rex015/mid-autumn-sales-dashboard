@@ -5,7 +5,12 @@ Created on Sat Jun 28 23:07:19 2025
 @author: User
 """
 
-# mid_autumn_streamlit_app.py
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jun 28 23:07:19 2025
+
+@author: User
+"""
 
 # mid_autumn_streamlit_app.py
 
@@ -48,7 +53,7 @@ def merge_product_analysis(sheets, product_id, weeks):
 def plot_product_sales(df_analysis, product_name):
     import matplotlib
     from matplotlib import font_manager
-    font_path = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+    font_path = "NotoSansTC-VariableFont_wght.ttf"
     prop = font_manager.FontProperties(fname=font_path)
     matplotlib.rcParams['font.family'] = prop.get_name()
     matplotlib.rcParams['axes.unicode_minus'] = False
@@ -94,4 +99,3 @@ if uploaded_file:
 else:
     st.info("請先上傳檔案後再開始分析。")
 
-    st.info("請先上傳檔案後再開始分析。")
