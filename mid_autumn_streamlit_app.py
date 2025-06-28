@@ -7,6 +7,8 @@ Created on Sat Jun 28 23:07:19 2025
 
 # mid_autumn_streamlit_app.py
 
+# mid_autumn_streamlit_app.py
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -44,6 +46,13 @@ def merge_product_analysis(sheets, product_id, weeks):
     return df_analysis
 
 def plot_product_sales(df_analysis, product_name):
+    import matplotlib
+    from matplotlib import font_manager
+    font_path = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+    prop = font_manager.FontProperties(fname=font_path)
+    matplotlib.rcParams['font.family'] = prop.get_name()
+    matplotlib.rcParams['axes.unicode_minus'] = False
+
     fig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)
 
     sns.barplot(x='週別', y='單週銷售量', data=df_analysis, ax=axes[0])
@@ -83,4 +92,6 @@ if uploaded_file:
     fig = plot_product_sales(df_analysis, product_name)
     st.pyplot(fig)
 else:
+    st.info("請先上傳檔案後再開始分析。")
+
     st.info("請先上傳檔案後再開始分析。")
