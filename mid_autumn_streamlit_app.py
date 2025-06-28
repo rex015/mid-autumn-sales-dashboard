@@ -84,8 +84,8 @@ if uploaded_file:
     product_names = sheets['每週銷售數量']['產品名稱'].tolist()
     product_map = dict(zip(product_ids, product_names))
 
-    product_id = st.selectbox("請選擇要分析的產品代號：", product_ids, format_func=lambda x: f"{x} - {product_map[x]}")
-    product_name = product_map[product_id]
+    product_name = st.selectbox("請選擇要分析的產品名稱：", product_names)
+    product_id = [k for k, v in product_map.items() if v == product_name][0]
 
     df_analysis = merge_product_analysis(sheets, product_id, weeks)
     st.subheader(f"📊 {product_name} 銷售數據表")
