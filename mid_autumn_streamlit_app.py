@@ -47,7 +47,7 @@ def plot_product_sales(df_analysis, product_name):
     import matplotlib
     from matplotlib import font_manager
 
-    font_path = "NotoSansTC-VariableFont_wght.ttf"
+    font_path = "NotoSansTC-Regular.otf"
     prop = font_manager.FontProperties(fname=font_path)
 
     matplotlib.rcParams['font.family'] = prop.get_name()
