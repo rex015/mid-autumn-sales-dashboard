@@ -46,10 +46,14 @@ def merge_product_analysis(sheets, product_id, weeks):
 def plot_product_sales(df_analysis, product_name):
     import matplotlib
     from matplotlib import font_manager
+    import os
 
     font_path = "NotoSansTC-VariableFont_wght.ttf"
-    prop = font_manager.FontProperties(fname=font_path)
+    if not os.path.exists(font_path):
+        st.warning(f"⚠️ 字體檔案不存在：{font_path}")
+        return plt.figure()
 
+    prop = font_manager.FontProperties(fname=font_path)
     matplotlib.rcParams['axes.unicode_minus'] = False
 
     fig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)
