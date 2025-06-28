@@ -47,27 +47,38 @@ def plot_product_sales(df_analysis, product_name):
     import matplotlib
     from matplotlib import font_manager
 
-    font_path = "NotoSansTC-Regular.otf"
+    font_path = "NotoSansTC-VariableFont_wght.ttf"
     prop = font_manager.FontProperties(fname=font_path)
 
-    matplotlib.rcParams['font.family'] = prop.get_name()
     matplotlib.rcParams['axes.unicode_minus'] = False
 
     fig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)
 
     sns.barplot(x='週別', y='單週銷售量', data=df_analysis, ax=axes[0])
-    axes[0].set_title(f'{product_name} 單週銷售量')
-    axes[0].set_ylabel("單週銷售量")
+    axes[0].set_title(f'{product_name} 單週銷售量', fontproperties=prop)
+    axes[0].set_ylabel("單週銷售量", fontproperties=prop)
     axes[0].tick_params(axis='x', rotation=45)
+    for label in axes[0].get_xticklabels():
+        label.set_fontproperties(prop)
+    for label in axes[0].get_yticklabels():
+        label.set_fontproperties(prop)
 
     sns.lineplot(x='週別', y='累積銷售量', data=df_analysis, marker='o', ax=axes[1])
-    axes[1].set_title(f'{product_name} 累積銷售量')
-    axes[1].set_ylabel("累積銷售量")
+    axes[1].set_title(f'{product_name} 累積銷售量', fontproperties=prop)
+    axes[1].set_ylabel("累積銷售量", fontproperties=prop)
+    for label in axes[1].get_xticklabels():
+        label.set_fontproperties(prop)
+    for label in axes[1].get_yticklabels():
+        label.set_fontproperties(prop)
 
     sns.lineplot(x='週別', y='週成長率(%)', data=df_analysis, marker='o', ax=axes[2], color='red')
-    axes[2].set_title(f'{product_name} 週成長率 (%)')
-    axes[2].set_ylabel("週成長率(%)")
+    axes[2].set_title(f'{product_name} 週成長率 (%)', fontproperties=prop)
+    axes[2].set_ylabel("週成長率(%)", fontproperties=prop)
     axes[2].axhline(0, ls='--', color='gray')
+    for label in axes[2].get_xticklabels():
+        label.set_fontproperties(prop)
+    for label in axes[2].get_yticklabels():
+        label.set_fontproperties(prop)
 
     plt.tight_layout()
     return fig
